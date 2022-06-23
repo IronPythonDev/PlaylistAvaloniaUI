@@ -1,0 +1,74 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PlaylistAvaloniaUI.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="PlaylistAvaloniaUI.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="PlaylistAvaloniaUI">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="3*" />
+		</Grid.ColumnDefinitions>
+
+		<ListBox Grid.Column="0" Items="{Binding Playlists}" SelectedItem="{Binding SelectedPlaylist}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid Margin="0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="0.2*" />
+							<ColumnDefinition Width="0.8*" />
+						</Grid.ColumnDefinitions>
+						<Image Source="{Binding Avatar}" Grid.Row="0" Grid.Column="0"></Image>
+						<StackPanel Grid.Row="0" Grid.Column="1">
+							<TextBlock FontSize="18" Text="{Binding Name}"/>
+							<TextBlock FontSize="14" Text="{Binding Description}" />
+						</StackPanel>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<StackPanel Grid.Row="0" Grid.Column="1" DataContext="{Binding SelectedPlaylist, Mode=OneWay}">
+			<TextBlock Text="{Binding Name}" FontSize="24" FontWeight="UltraBold"/>
+			<TextBlock Text="{Binding Description}" FontSize="14" Padding="0,0,0,10" TextWrapping="Wrap"/>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="0.4*" />
+					<ColumnDefinition Width="0.2*" />
+					<ColumnDefinition Width="0.2*" />
+					<ColumnDefinition Width="0.15*" />
+				</Grid.ColumnDefinitions>
+				<TextBlock Grid.Column="0" FontSize="14" Text="Song"/>
+				<TextBlock Grid.Column="1" FontSize="14" Text="Album"/>
+				<TextBlock Grid.Column="2" FontSize="14" Text="Artist"/>
+				<TextBlock Grid.Column="3" FontSize="14" Text="Duration"/>
+			</Grid>
+			<ListBox Items="{Binding Songs}" >
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="0.4*" />
+								<ColumnDefinition Width="0.2*" />
+								<ColumnDefinition Width="0.2*" />
+								<ColumnDefinition Width="0.135*" />
+							</Grid.ColumnDefinitions>
+							<TextBlock Grid.Column="0" FontSize="14" Text="{Binding Name}"/>
+							<TextBlock Grid.Column="1" FontSize="14" Text="{Binding Album}"/>
+							<TextBlock Grid.Column="2" FontSize="14" Text="{Binding Artist}"/>
+							<TextBlock Grid.Column="3" FontSize="14" Text="{Binding Duration}"/>
+						</Grid>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</StackPanel>
+	</Grid>
+</Window>
