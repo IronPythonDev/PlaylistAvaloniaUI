@@ -3,9 +3,11 @@
         xmlns:vm="using:PlaylistAvaloniaUI.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
+        Width="1000" Height="600"
         x:Class="PlaylistAvaloniaUI.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
+		Name="window"
         Title="PlaylistAvaloniaUI">
 
     <Design.DataContext>
@@ -14,10 +16,10 @@
 
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="1*" />
 			<ColumnDefinition Width="3*" />
 		</Grid.ColumnDefinitions>
-
+		
 		<ListBox Grid.Column="0" Items="{Binding Playlists}" SelectedItem="{Binding SelectedPlaylist}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
@@ -35,11 +37,16 @@
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-
-		<StackPanel Grid.Row="0" Grid.Column="1" DataContext="{Binding SelectedPlaylist, Mode=OneWay}">
-			<TextBlock Text="{Binding Name}" FontSize="24" FontWeight="UltraBold"/>
-			<TextBlock Text="{Binding Description}" FontSize="14" Padding="0,0,0,10" TextWrapping="Wrap"/>
-			<Grid>
+		<Grid Grid.Column="1"  DataContext="{Binding SelectedPlaylist, Mode=OneWay}">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="3*"/>
+			</Grid.RowDefinitions>
+			<TextBlock Grid.Row="0" Text="{Binding Name}" FontSize="24" FontWeight="UltraBold" />
+			<TextBlock Grid.Row="1" Text="{Binding Description}" FontSize="14" Padding="0,0,0,10" TextWrapping="Wrap" />
+			<Grid Grid.Row="2">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="0.4*" />
 					<ColumnDefinition Width="0.2*" />
@@ -51,7 +58,7 @@
 				<TextBlock Grid.Column="2" FontSize="14" Text="Artist"/>
 				<TextBlock Grid.Column="3" FontSize="14" Text="Duration"/>
 			</Grid>
-			<ListBox Items="{Binding Songs}" >
+			<ListBox Grid.Row="3" Items="{Binding Songs}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 						<Grid>
@@ -69,6 +76,6 @@
 					</DataTemplate>
 				</ListBox.ItemTemplate>
 			</ListBox>
-		</StackPanel>
+		</Grid>
 	</Grid>
 </Window>

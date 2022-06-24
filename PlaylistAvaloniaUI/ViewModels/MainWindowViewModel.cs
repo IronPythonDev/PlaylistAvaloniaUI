@@ -10,7 +10,8 @@ namespace PlaylistAvaloniaUI.ViewModels
         string[] playlists = new string[]
         {
             "https://music.apple.com/ua/playlist/a-list-pop/pl.5ee8333dbe944d9f9151e97d92d1ead9",
-            "https://music.apple.com/ua/playlist/rap-life/pl.abe8ba42278f4ef490e3a9fc5ec8e8c5"
+            "https://music.apple.com/ua/playlist/rap-life/pl.abe8ba42278f4ef490e3a9fc5ec8e8c5",
+            "https://music.apple.com/ua/playlist/the-new-rock/pl.28926c578a80475c904026ea97646ad5"
         };
 
         private PlaylistModel _selectedPlaylist;
